@@ -1,15 +1,16 @@
-FROM andrewosh/binder-base
+FROM andrewosh/binder-python-3.5
 
 MAINTAINER Greg Caporaso <gregcaporaso@gmail.com>
 
 USER root
 
+RUN apt-get update
 RUN apt-get install -y Xvfb x11-utils
 
 USER main
 
 # Install IAB
-RUN /bin/bash -c "source activate python3 && conda install --yes -c biocore -c etetoolkit ete3 ete3_external_apps python=3.5 pip numpy scipy matplotlib nose scikit-bio jupyter seaborn pandas markdown2 networkx pyqt"
-RUN /bin/bash -c "source activate python3 && pip install https://github.com/gregcaporaso/An-Introduction-To-Applied-Bioinformatics/archive/master.zip"
+RUN /bin/bash -c "conda install --yes -c biocore -c etetoolkit ete3 ete3_external_apps scikit-bio=0.4.2 jupyter seaborn pandas markdown2 networkx pyqt"
+RUN /bin/bash -c "pip install https://github.com/gregcaporaso/An-Introduction-To-Applied-Bioinformatics/archive/master.zip"
 
 ENTRYPOINT xvfb-run
