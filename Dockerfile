@@ -5,7 +5,7 @@ MAINTAINER Greg Caporaso <gregcaporaso@gmail.com>
 USER root
 
 RUN apt-get update
-RUN apt-get install -y Xvfb x11-utils
+RUN apt-get install -y xvfb x11-utils xauth
 
 USER main
 
